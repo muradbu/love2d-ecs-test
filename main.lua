@@ -1,3 +1,15 @@
+local Concord = require("libs/concord/concord")
+Concord.utils.loadNamespace("components")
+
+local Systems = {}
+Concord.utils.loadNamespace("systems", Systems)
+
+print(Systems.MoveSystem)
+
+local world = Concord.world()
+
+world:addSystems(Systems.MoveSystem, Systems.DrawSystem) -- error because Systems.* are boolean???
+
 function love.load()
 end
 
