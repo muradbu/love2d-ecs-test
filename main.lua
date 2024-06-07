@@ -4,19 +4,30 @@ Concord.utils.loadNamespace("components")
 local Systems = {}
 Concord.utils.loadNamespace("systems", Systems)
 
-print(Systems.MoveSystem)
-
 local world = Concord.world()
 
-world:addSystems(Systems.MoveSystem, Systems.DrawSystem) -- error because Systems.* are boolean???
+for _, system in ipairs(Systems) do
+    world:addSystem(system)
+end
+
+local entity_1 = Concord.entity(world)
+:give("position", 100, 100)
+:give("velocity", 100, 0)
+:give("drawable")
+
+local entity_2 = Concord.entity(world)
+:give("position", 50, 50)
+:give("drawable")
 
 function love.load()
 end
 
 function love.update(dt)
+    world:emit("update", dt)
 end
 
 function love.draw()
+    world:emit("draw")
 end
 
 function love.mousepressed()

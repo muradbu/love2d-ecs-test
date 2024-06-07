@@ -10,4 +10,4 @@ Concord.component("velocity", function(component, x, y)
     component.y = y or 0
 end)
 
-local Drawable = Concord.component("drawable")
+Drawable = Concord.component("drawable")
